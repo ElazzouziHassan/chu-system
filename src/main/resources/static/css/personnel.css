@@ -1,0 +1,417 @@
+/* Styles for the Personnel pages */
+
+/* Header section */
+.personnel-header {
+  background: linear-gradient(135deg, var(--info) 0%, #1d4ed8 100%);
+  color: white;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.personnel-header h1 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.personnel-header h1 i {
+  font-size: 1.75rem;
+}
+
+.personnel-header .btn-new-dropdown {
+  position: relative;
+}
+
+.personnel-header .btn-new {
+  background-color: white;
+  color: var(--info);
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow);
+}
+
+.personnel-header .btn-new:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+.personnel-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--spacing-2);
+  background-color: white;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  min-width: 200px;
+  z-index: 10;
+  overflow: hidden;
+  display: none;
+}
+
+.personnel-dropdown.show {
+  display: block;
+  animation: fadeIn 0.2s ease-out forwards;
+}
+
+.personnel-dropdown a {
+  display: block;
+  padding: var(--spacing-3) var(--spacing-4);
+  color: var(--gray-700);
+  transition: var(--transition-all);
+  text-decoration: none;
+}
+
+.personnel-dropdown a:hover {
+  background-color: var(--gray-100);
+  color: var(--primary);
+}
+
+.personnel-dropdown a i {
+  margin-right: var(--spacing-2);
+  width: 1.25rem;
+  text-align: center;
+}
+
+/* Search and filters */
+.personnel-filters {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.personnel-search {
+  flex: 1;
+  min-width: 250px;
+}
+
+.personnel-search input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+}
+
+.personnel-search input:focus {
+  border-color: var(--info);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.personnel-filter select {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  min-width: 200px;
+}
+
+.personnel-filter select:focus {
+  border-color: var(--info);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+/* Table styles */
+.personnel-table {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.personnel-table .table {
+  margin-bottom: 0;
+}
+
+.personnel-table th {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: var(--spacing-4) var(--spacing-4);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.personnel-table td {
+  padding: var(--spacing-4) var(--spacing-4);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.personnel-table tr:last-child td {
+  border-bottom: none;
+}
+
+.personnel-table tr:hover {
+  background-color: var(--gray-50);
+}
+
+/* Role badges */
+.personnel-role {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.role-medecin {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.role-infirmier {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.role-administrateur {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.role-directeur {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.role-agent-aide {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+/* Action buttons */
+.personnel-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: flex-end;
+}
+
+.btn-action {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  color: white;
+}
+
+.btn-view {
+  background-color: var(--info);
+}
+
+.btn-edit {
+  background-color: var(--warning);
+}
+
+.btn-delete {
+  background-color: var(--danger);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Form styles */
+.personnel-form {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.personnel-form .form-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.personnel-form label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.personnel-form input,
+.personnel-form select,
+.personnel-form textarea {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+}
+
+.personnel-form input:focus,
+.personnel-form select:focus,
+.personnel-form textarea:focus {
+  border-color: var(--info);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.personnel-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+}
+
+/* Detail view */
+.personnel-detail {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.personnel-detail-header {
+  background: linear-gradient(135deg, var(--info) 0%, #1d4ed8 100%);
+  color: white;
+  padding: var(--spacing-6);
+}
+
+.personnel-detail-header h2 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.personnel-detail-body {
+  padding: var(--spacing-6);
+}
+
+.personnel-detail-item {
+  margin-bottom: var(--spacing-4);
+}
+
+.personnel-detail-label {
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-1);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.personnel-detail-value {
+  font-size: 1rem;
+  color: var(--gray-900);
+}
+
+.personnel-detail-actions {
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .personnel-header {
+    padding: var(--spacing-4);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .personnel-header .btn-new {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .personnel-filters {
+    flex-direction: column;
+  }
+
+  .personnel-table th {
+    display: none;
+  }
+
+  .personnel-table td {
+    display: block;
+    text-align: right;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .personnel-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .personnel-table tr {
+    display: block;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--spacing-3) 0;
+  }
+
+  .personnel-actions {
+    justify-content: flex-end;
+    margin-top: var(--spacing-2);
+  }
+
+  .personnel-form {
+    padding: var(--spacing-4);
+  }
+
+  .personnel-dropdown {
+    position: static;
+    width: 100%;
+    margin-top: var(--spacing-2);
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.personnel-container {
+  animation: slideIn 0.3s ease-out forwards;
+}
+

@@ -1,0 +1,404 @@
+/* Styles for the Buildings (Bâtiments) pages */
+
+/* Header section */
+.batiments-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.batiments-header h1 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.batiments-header h1 i {
+  font-size: 1.75rem;
+}
+
+.batiments-header .btn-new {
+  background-color: white;
+  color: var(--primary);
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow);
+}
+
+.batiments-header .btn-new:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+/* Search and filters */
+.batiments-filters {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.batiments-search {
+  flex: 1;
+  min-width: 250px;
+}
+
+.batiments-search input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+}
+
+.batiments-search input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+.batiments-filter select {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  min-width: 200px;
+}
+
+.batiments-filter select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+/* Table styles */
+.batiments-table {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.batiments-table .table {
+  margin-bottom: 0;
+}
+
+.batiments-table th {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: var(--spacing-4) var(--spacing-4);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.batiments-table td {
+  padding: var(--spacing-4) var(--spacing-4);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.batiments-table tr:last-child td {
+  border-bottom: none;
+}
+
+.batiments-table tr:hover {
+  background-color: var(--gray-50);
+}
+
+/* Category badges */
+.batiment-categorie {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.categorie-administration {
+  background-color: rgba(37, 99, 235, 0.1);
+  color: var(--primary);
+  border: 1px solid rgba(37, 99, 235, 0.2);
+}
+
+.categorie-laboratoire {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.categorie-urgence {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.categorie-radiologie {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.categorie-medecine_generale {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.categorie-specialites_medicales {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.categorie-chirurgie {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+/* Action buttons */
+.batiments-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: flex-end;
+}
+
+.btn-action {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  color: white;
+}
+
+.btn-view {
+  background-color: var(--info);
+}
+
+.btn-edit {
+  background-color: var(--warning);
+}
+
+.btn-delete {
+  background-color: var(--danger);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Form styles */
+.batiment-form {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.batiment-form .form-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.batiment-form label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.batiment-form input,
+.batiment-form select,
+.batiment-form textarea {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+}
+
+.batiment-form input:focus,
+.batiment-form select:focus,
+.batiment-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  outline: none;
+}
+
+.batiment-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.batiment-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+}
+
+/* Detail view */
+.batiment-detail {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.batiment-detail-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: white;
+  padding: var(--spacing-6);
+}
+
+.batiment-detail-header h2 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.batiment-detail-body {
+  padding: var(--spacing-6);
+}
+
+.batiment-detail-item {
+  margin-bottom: var(--spacing-4);
+}
+
+.batiment-detail-label {
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-1);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.batiment-detail-value {
+  font-size: 1rem;
+  color: var(--gray-900);
+}
+
+.batiment-detail-actions {
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+}
+
+/* Empty state */
+.batiments-empty {
+  padding: var(--spacing-8);
+  text-align: center;
+  color: var(--gray-500);
+}
+
+.batiments-empty i {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-4);
+  color: var(--gray-400);
+}
+
+.batiments-empty p {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .batiments-header {
+    padding: var(--spacing-4);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .batiments-header .btn-new {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .batiments-filters {
+    flex-direction: column;
+  }
+
+  .batiments-table th {
+    display: none;
+  }
+
+  .batiments-table td {
+    display: block;
+    text-align: right;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .batiments-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .batiments-table tr {
+    display: block;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--spacing-3) 0;
+  }
+
+  .batiments-actions {
+    justify-content: flex-end;
+    margin-top: var(--spacing-2);
+  }
+
+  .batiment-form {
+    padding: var(--spacing-4);
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.batiments-container {
+  animation: slideIn 0.3s ease-out forwards;
+}
+

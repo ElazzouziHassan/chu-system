@@ -1,0 +1,403 @@
+/* Styles for the Patients pages */
+
+/* Header section */
+.patients-header {
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+  color: white;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.patients-header h1 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.patients-header h1 i {
+  font-size: 1.75rem;
+}
+
+.patients-header .btn-new {
+  background-color: white;
+  color: var(--success);
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow);
+}
+
+.patients-header .btn-new:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+/* Search and filters */
+.patients-filters {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.patients-search {
+  flex: 1;
+  min-width: 250px;
+}
+
+.patients-search input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+}
+
+.patients-search input:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  outline: none;
+}
+
+.patients-filter select {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  min-width: 200px;
+}
+
+.patients-filter select:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  outline: none;
+}
+
+/* Table styles */
+.patients-table {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.patients-table .table {
+  margin-bottom: 0;
+}
+
+.patients-table th {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: var(--spacing-4) var(--spacing-4);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.patients-table td {
+  padding: var(--spacing-4) var(--spacing-4);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.patients-table tr:last-child td {
+  border-bottom: none;
+}
+
+.patients-table tr:hover {
+  background-color: var(--gray-50);
+}
+
+/* Status badges */
+.patient-status {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-stable {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-critique {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.status-observation {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.status-sorti {
+  background-color: rgba(107, 114, 128, 0.1);
+  color: var(--gray-500);
+  border: 1px solid rgba(107, 114, 128, 0.2);
+}
+
+/* Action buttons */
+.patients-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.btn-action {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  color: white;
+}
+
+.btn-view {
+  background-color: var(--info);
+}
+
+.btn-edit {
+  background-color: var(--warning);
+}
+
+.btn-transfer {
+  background-color: var(--primary);
+}
+
+.btn-discharge {
+  background-color: var(--success);
+}
+
+.btn-delete {
+  background-color: var(--danger);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Form styles */
+.patient-form {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.patient-form .form-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.patient-form label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.patient-form input,
+.patient-form select,
+.patient-form textarea {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+}
+
+.patient-form input:focus,
+.patient-form select:focus,
+.patient-form textarea:focus {
+  border-color: var(--success);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  outline: none;
+}
+
+.patient-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.patient-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+}
+
+/* Detail view */
+.patient-detail {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.patient-detail-header {
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+  color: white;
+  padding: var(--spacing-6);
+}
+
+.patient-detail-header h2 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.patient-detail-body {
+  padding: var(--spacing-6);
+}
+
+.patient-detail-item {
+  margin-bottom: var(--spacing-4);
+}
+
+.patient-detail-label {
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-1);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.patient-detail-value {
+  font-size: 1rem;
+  color: var(--gray-900);
+}
+
+.patient-detail-actions {
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+}
+
+/* Transfer form */
+.transfer-form {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.transfer-form .patient-info {
+  background-color: var(--gray-100);
+  padding: var(--spacing-4);
+  border-radius: var(--radius);
+  margin-bottom: var(--spacing-6);
+}
+
+.transfer-form .patient-name {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-bottom: var(--spacing-2);
+}
+
+.transfer-form .patient-code {
+  color: var(--gray-600);
+  font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .patients-header {
+    padding: var(--spacing-4);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .patients-header .btn-new {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .patients-filters {
+    flex-direction: column;
+  }
+
+  .patients-table th {
+    display: none;
+  }
+
+  .patients-table td {
+    display: block;
+    text-align: right;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .patients-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .patients-table tr {
+    display: block;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--spacing-3) 0;
+  }
+
+  .patients-actions {
+    justify-content: flex-end;
+    margin-top: var(--spacing-2);
+  }
+
+  .patient-form {
+    padding: var(--spacing-4);
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.patients-container {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
