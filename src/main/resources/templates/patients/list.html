@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Gestion des Patients - CHU El Jadida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/patients.css}">
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::content})}">
+        <div th:fragment="content">
+            <div class="patients-container">
+                <!-- Header section -->
+                <div class="patients-header">
+                    <h1><i class="fas fa-procedures"></i> Gestion des Patients</h1>
+                    <a th:href="@{/patients/new}" class="btn-new">
+                        <i class="fas fa-plus-circle"></i> Nouveau Patient
+                    </a>
+                </div>
+                
+                <!-- Search and filters -->
+                <div class="patients-filters">
+                    <div class="patients-search">
+                        <input type="text" placeholder="Rechercher un patient..." class="search-input" data-table="patients-table">
+                    </div>
+                    <div class="patients-filter">
+                        <select class="filter-select" data-column="situation" data-table="patients-table">
+                            <option value="">Toutes les situations</option>
+                            <option value="Stable">Stable</option>
+                            <option value="Critique">Critique</option>
+                            <option value="Observation">En observation</option>
+                            <option value="Sorti">Sorti</option>
+                        </select>
+                    </div>
+                    <div class="patients-filter">
+                        <select class="filter-select" data-column="type" data-table="patients-table">
+                            <option value="">Tous les types</option>
+                            <option value="Urgence">Urgence</option>
+                            <option value="Consultation">Consultation</option>
+                            <option value="Hospitalisation">Hospitalisation</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Table -->
+                <div class="patients-table">
+                    <table class="table" id="patients-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Code</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Âge</th>
+                                <th>Situation</th>
+                                <th>Type</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:if="${patients.empty}">
+                                <td colspan="8">
+                                    <div class="patients-empty">
+                                        <i class="fas fa-procedures"></i>
+                                        <p>Aucun patient trouvé</p>
+                                        <a th:href="@{/patients/new}" class="btn btn-primary">
+                                            <i class="fas fa-plus-circle me-2"></i>Ajouter un patient
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:each="patient : ${patients}">
+                                <td data-label="ID" th:text="${patient.id}">1</td>
+                                <td data-label="Code" th:text="${patient.code}">P001</td>
+                                <td data-label="Nom" th:text="${patient.nom}">Alaoui</td>
+                                <td data-label="Prénom" th:text="${patient.prenom}">Ahmed</td>
+                                <td data-label="Âge" th:text="${patient.age}">45</td>
+                                <td data-label="Situation" data-column="situation">
+                                    <span th:class="'patient-status status-' + ${#strings.toLowerCase(patient.situationMedicale)}" 
+                                          th:text="${patient.situationMedicale}">Stable</span>
+                                </td>
+                                <td data-label="Type" data-column="type" th:text="${patient.type}">Hospitalisation</td>
+                                <td class="text-end">
+                                    <div class="patients-actions">
+                                        <a th:href="@{/patients/view/{id}(id=${patient.id})}" 
+                                           class="btn-action btn-view" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Voir les détails">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a th:href="@{/patients/edit/{id}(id=${patient.id})}" 
+                                           class="btn-action btn-edit" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{/patients/transfert/{id}(id=${patient.id})}" 
+                                           class="btn-action btn-transfer" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Transférer">
+                                            <i class="fas fa-exchange-alt"></i>
+                                        </a>
+                                        <a th:href="@{/patients/sortie/{id}(id=${patient.id})}" 
+                                           class="btn-action btn-discharge" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Sortie"
+                                           data-confirm="Confirmer la sortie de ce patient ?">
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+                                        <a th:href="@{/patients/delete/{id}(id=${patient.id})}" 
+                                           class="btn-action btn-delete" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Supprimer"
+                                           data-confirm="Êtes-vous sûr de vouloir supprimer ce patient ?">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Médecin - CHU El Jadida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/personnel.css}">
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::content})}">
+        <div th:fragment="content">
+            <div class="personnel-container">
+                <!-- Header section -->
+                <div class="personnel-header">
+                    <h1>
+                        <i class="fas fa-user-md"></i>
+                        <span th:text="${personnel.id == null ? 'Nouveau Médecin' : 'Modifier Médecin'}">Médecin</span>
+                    </h1>
+                    <a th:href="@{/personnel}" class="btn-new">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </a>
+                </div>
+                
+                <!-- Form -->
+                <div class="personnel-form">
+                    <form th:action="@{/personnel/save/medecin}" method="post" th:object="${personnel}" class="needs-validation" novalidate>
+                        <input type="hidden" th:field="*{id}" />
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="nom" class="form-label">Nom</label>
+                                    <input type="text" class="form-control" id="nom" th:field="*{nom}" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir le nom du médecin.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="prenom" class="form-label">Prénom</label>
+                                    <input type="text" class="form-control" id="prenom" th:field="*{prenom}" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir le prénom du médecin.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="identifiant" class="form-label">Identifiant</label>
+                                    <input type="text" class="form-control" id="identifiant" th:field="*{identifiant}" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir l'identifiant du médecin.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-4">
+                                    <label for="specialite" class="form-label">Spécialité</label>
+                                    <input type="text" class="form-control" id="specialite" th:field="*{specialite}" required>
+                                    <div class="invalid-feedback">
+                                        Veuillez saisir la spécialité du médecin.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="reset" class="btn btn-secondary">
+                                <i class="fas fa-undo me-2"></i>Réinitialiser
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Enregistrer
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Détails du Personnel - CHU El Jadida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/personnel.css}">
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::content})}">
+        <div th:fragment="content">
+            <div class="personnel-container">
+                <!-- Header section -->
+                <div class="personnel-header">
+                    <h1>
+                        <i th:if="${personnel instanceof T(org.chu.entities.Medecin)}" class="fas fa-user-md"></i>
+                        <i th:if="${personnel instanceof T(org.chu.entities.Infirmier)}" class="fas fa-user-nurse"></i>
+                        <i th:if="${personnel instanceof T(org.chu.entities.Administrateur)}" class="fas fa-user-tie"></i>
+                        <i th:if="${personnel instanceof T(org.chu.entities.AgentAide)}" class="fas fa-user-shield"></i>
+                        <i th:if="${personnel instanceof T(org.chu.entities.Directeur)}" class="fas fa-user-graduate"></i>
+                        <span>Détails du Personnel</span>
+                    </h1>
+                    <a th:href="@{/personnel}" class="btn-new">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </a>
+                </div>
+                
+                <!-- Personnel details -->
+                <div class="personnel-detail">
+                    <div class="personnel-detail-header">
+                        <h2 th:text="${personnel.nom + ' ' + personnel.prenom}">Karim Tazi</h2>
+                        <p class="mb-0">
+                            <span th:if="${personnel instanceof T(org.chu.entities.Medecin)}" class="personnel-role role-medecin">Médecin</span>
+                            <span th:if="${personnel instanceof T(org.chu.entities.Infirmier)}" class="personnel-role role-infirmier">Infirmier</span>
+                            <span th:if="${personnel instanceof T(org.chu.entities.Administrateur)}" class="personnel-role role-administrateur">Administrateur</span>
+                            <span th:if="${personnel instanceof T(org.chu.entities.AgentAide)}" class="personnel-role role-agent-aide">Agent d'aide</span>
+                            <span th:if="${personnel instanceof T(org.chu.entities.Directeur)}" class="personnel-role role-directeur">Directeur</span>
+                        </p>
+                    </div>
+                    
+                    <div class="personnel-detail-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="personnel-detail-item">
+                                    <div class="personnel-detail-label">Identifiant</div>
+                                    <div class="personnel-detail-value" th:text="${personnel.identifiant}">KT001</div>
+                                </div>
+                                
+                                <div class="personnel-detail-item">
+                                    <div class="personnel-detail-label">Fonction</div>
+                                    <div class="personnel-detail-value" th:text="${personnel.fonction}">Médecin</div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <!-- Specific fields based on personnel type -->
+                                <div class="personnel-detail-item" th:if="${personnel instanceof T(org.chu.entities.Medecin)}">
+                                    <div class="personnel-detail-label">Spécialité</div>
+                                    <div class="personnel-detail-value" th:text="${((org.chu.entities.Medecin)personnel).specialite}">Cardiologie</div>
+                                </div>
+                                
+                                <div class="personnel-detail-item" th:if="${personnel instanceof T(org.chu.entities.Infirmier)}">
+                                    <div class="personnel-detail-label">Service</div>
+                                    <div class="personnel-detail-value" th:text="${((org.chu.entities.Infirmier)personnel).service}">Urgences</div>
+                                </div>
+                                
+                                <div class="personnel-detail-item" th:if="${personnel instanceof T(org.chu.entities.Administrateur)}">
+                                    <div class="personnel-detail-label">Département</div>
+                                    <div class="personnel-detail-value" th:text="${((org.chu.entities.Administrateur)personnel).departement}">Ressources Humaines</div>
+                                </div>
+                                
+                                <div class="personnel-detail-item" th:if="${personnel instanceof T(org.chu.entities.AgentAide)}">
+                                    <div class="personnel-detail-label">Zone</div>
+                                    <div class="personnel-detail-value" th:text="${((org.chu.entities.AgentAide)personnel).zone}">Zone Nord</div>
+                                </div>
+                                
+                                <div class="personnel-detail-item" th:if="${personnel instanceof T(org.chu.entities.Directeur)}">
+                                    <div class="personnel-detail-label">Bureau</div>
+                                    <div class="personnel-detail-value" th:text="${((org.chu.entities.Directeur)personnel).bureau}">Bureau 101</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="personnel-detail-actions">
+                        <a th:href="@{/personnel/edit/{id}(id=${personnel.id})}" class="btn btn-warning">
+                            <i class="fas fa-edit me-2"></i>Modifier
+                        </a>
+                        <a th:href="@{/personnel/delete/{id}(id=${personnel.id})}" class="btn btn-danger"
+                           data-confirm="Êtes-vous sûr de vouloir supprimer ce membre du personnel ?">
+                            <i class="fas fa-trash me-2"></i>Supprimer
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+

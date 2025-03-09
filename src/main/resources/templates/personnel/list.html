@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}">Gestion du Personnel - CHU El Jadida</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/personnel.css}">
+</head>
+<body>
+    <div th:replace="~{layout/main :: body(content=~{::content})}">
+        <div th:fragment="content">
+            <div class="personnel-container">
+                <!-- Header section -->
+                <div class="personnel-header">
+                    <h1><i class="fas fa-user-md"></i> Gestion du Personnel</h1>
+                    <div class="personnel-dropdown-toggle btn-new">
+                        <i class="fas fa-plus-circle"></i> Nouveau Personnel <i class="fas fa-chevron-down ms-2"></i>
+                    </div>
+                    <div class="personnel-dropdown">
+                        <a th:href="@{/personnel/new/medecin}">
+                            <i class="fas fa-user-md"></i> Médecin
+                        </a>
+                        <a th:href="@{/personnel/new/infirmier}">
+                            <i class="fas fa-user-nurse"></i> Infirmier
+                        </a>
+                        <a th:href="@{/personnel/new/administrateur}">
+                            <i class="fas fa-user-tie"></i> Administrateur
+                        </a>
+                        <a th:href="@{/personnel/new/agentaide}">
+                            <i class="fas fa-user-shield"></i> Agent d'Aide
+                        </a>
+                        <a th:href="@{/personnel/new/directeur}">
+                            <i class="fas fa-user-graduate"></i> Directeur
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Search and filters -->
+                <div class="personnel-filters">
+                    <div class="personnel-search">
+                        <input type="text" placeholder="Rechercher un membre du personnel..." class="search-input" data-table="personnel-table">
+                    </div>
+                    <div class="personnel-filter">
+                        <select class="filter-select" data-column="fonction" data-table="personnel-table">
+                            <option value="">Toutes les fonctions</option>
+                            <option value="Médecin">Médecin</option>
+                            <option value="Infirmier">Infirmier</option>
+                            <option value="Administrateur">Administrateur</option>
+                            <option value="Agent d'aide">Agent d'aide</option>
+                            <option value="Directeur">Directeur</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Table -->
+                <div class="personnel-table">
+                    <table class="table" id="personnel-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Fonction</th>
+                                <th>Identifiant</th>
+                                <th>Spécialité/Service</th>
+                                <th class="text-end">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:if="${personnels.empty}">
+                                <td colspan="7">
+                                    <div class="personnel-empty">
+                                        <i class="fas fa-user-md"></i>
+                                        <p>Aucun personnel trouvé</p>
+                                        <div class="mt-3">
+                                            <a th:href="@{/personnel/new/medecin}" class="btn btn-primary me-2">
+                                                <i class="fas fa-user-md me-2"></i>Ajouter un médecin
+                                            </a>
+                                            <a th:href="@{/personnel/new/infirmier}" class="btn btn-info me-2">
+                                                <i class="fas fa-user-nurse me-2"></i>Ajouter un infirmier
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr th:each="personnel : ${personnels}">
+                                <td data-label="ID" th:text="${personnel.id}">1</td>
+                                <td data-label="Nom" th:text="${personnel.nom}">Tazi</td>
+                                <td data-label="Prénom" th:text="${personnel.prenom}">Karim</td>
+                                <td data-label="Fonction" data-column="fonction">
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Medecin)}" class="personnel-role role-medecin">Médecin</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Infirmier)}" class="personnel-role role-infirmier">Infirmier</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Administrateur)}" class="personnel-role role-administrateur">Administrateur</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.AgentAide)}" class="personnel-role role-agent-aide">Agent d'aide</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Directeur)}" class="personnel-role role-directeur">Directeur</span>
+                                </td>
+                                <td data-label="Identifiant" th:text="${personnel.identifiant}">KT001</td>
+                                <td data-label="Spécialité/Service">
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Medecin)}" 
+                                          th:text="${((org.chu.entities.Medecin)personnel).specialite}">Cardiologie</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Infirmier)}" 
+                                          th:text="${((org.chu.entities.Infirmier)personnel).service}">Urgences</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Administrateur)}" 
+                                          th:text="${((org.chu.entities.Administrateur)personnel).departement}">Ressources Humaines</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.AgentAide)}" 
+                                          th:text="${((org.chu.entities.AgentAide)personnel).zone}">Zone Nord</span>
+                                    <span th:if="${personnel instanceof T(org.chu.entities.Directeur)}" 
+                                          th:text="${((org.chu.entities.Directeur)personnel).bureau}">Bureau 101</span>
+                                </td>
+                                <td class="text-end">
+                                    <div class="personnel-actions">
+                                        <a th:href="@{/personnel/view/{id}(id=${personnel.id})}" 
+                                           class="btn-action btn-view" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Voir les détails">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a th:href="@{/personnel/edit/{id}(id=${personnel.id})}" 
+                                           class="btn-action btn-edit" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Modifier">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a th:href="@{/personnel/delete/{id}(id=${personnel.id})}" 
+                                           class="btn-action btn-delete" 
+                                           data-bs-toggle="tooltip" 
+                                           title="Supprimer"
+                                           data-confirm="Êtes-vous sûr de vouloir supprimer ce membre du personnel ?">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+
