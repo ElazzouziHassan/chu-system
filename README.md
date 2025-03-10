@@ -4,6 +4,8 @@
 
 The CHU Hospital Management System is a comprehensive web-based application. This system provides an integrated solution for managing hospital buildings, personnel, patients, services, and notifications, enabling efficient hospital administration and improved patient care.
 
+![Preview](./public/snapshot.png)
+
 ## Technologies Used
 
 - **Backend**: Java 17, Spring Boot 3.2.3
