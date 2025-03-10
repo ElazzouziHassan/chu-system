@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title th:text="${title}">Diffuser une Notification - CHU El Jadida</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" th:href="@{/css/style.css}">
+   <link rel="stylesheet" th:href="@{/css/notifications.css}">
+</head>
+<body>
+   <div th:replace="~{layout/main :: body(content=~{::content})}">
+       <div th:fragment="content">
+           <div class="notifications-container">
+               <!-- Header section -->
+               <div class="notifications-header">
+                   <h1>
+                       <i class="fas fa-broadcast-tower"></i>
+                       <span>Diffuser une Notification</span>
+                   </h1>
+                   <a th:href="@{/notifications}" class="btn-new">
+                       <i class="fas fa-arrow-left"></i> Retour à la liste
+                   </a>
+               </div>
+               
+               <!-- Form -->
+               <div class="diffusion-form">
+                   <div class="diffusion-icon">
+                       <i class="fas fa-broadcast-tower"></i>
+                   </div>
+                   <div class="diffusion-title">
+                       Diffuser un message à tout le personnel
+                   </div>
+                   
+                   <form th:action="@{/notifications/diffuser}" method="post" class="needs-validation" novalidate>
+                       <div class="form-group mb-4">
+                           <label for="message" class="form-label">Message à diffuser</label>
+                           <textarea class="form-control" id="message" name="message" rows="6" required></textarea>
+                           <div class="invalid-feedback">
+                               Veuillez saisir un message à diffuser.
+                           </div>
+                       </div>
+                       
+                       <div class="alert alert-info">
+                           <i class="fas fa-info-circle me-2"></i>
+                           <strong>Information:</strong> Ce message sera envoyé à tous les membres du personnel du CHU. 
+                           Utilisez cette fonctionnalité pour les communications importantes et urgentes.
+                       </div>
+                       
+                       <div class="form-actions">
+                           <button type="button" class="btn btn-secondary" onclick="history.back()">
+                               <i class="fas fa-times me-2"></i>Annuler
+                           </button>
+                           <button type="submit" class="btn btn-primary">
+                               <i class="fas fa-broadcast-tower me-2"></i>Diffuser le message
+                           </button>
+                       </div>
+                   </form>
+               </div>
+               
+               <!-- Observer Pattern Explanation -->
+               <div class="card mt-5">
+                   <div class="card-header">
+                       <h5 class="mb-0"><i class="fas fa-info-circle me-2"></i>À propos du système de diffusion</h5>
+                   </div>
+                   <div class="card-body">
+                       <p>Le système de diffusion de notifications utilise le <strong>patron de conception Observateur (Observer Pattern)</strong> pour garantir que tous les destinataires concernés reçoivent les messages de manière efficace et en temps réel.</p>
+                       
+                       <p>Ce mécanisme permet :</p>
+                       <ul>
+                           <li>Une communication instantanée avec l'ensemble du personnel</li>
+                           <li>Une distribution ciblée des informations aux services concernés</li>
+                           <li>Un suivi des notifications lues et non lues</li>
+                           <li>Une gestion centralisée des communications importantes</li>
+                       </ul>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+
