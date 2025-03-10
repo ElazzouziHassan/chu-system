@@ -176,3 +176,77 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 })
 
+// Sidebar Toggle Functionality
+document.addEventListener("DOMContentLoaded", () => {
+  // Toggle sidebar on button click
+  const sidebarCollapse = document.getElementById("sidebarCollapse")
+  const sidebarCollapseBtn = document.getElementById("sidebarCollapseBtn")
+  const sidebar = document.getElementById("sidebar")
+  const content = document.getElementById("content")
+
+  if (sidebarCollapse) {
+    sidebarCollapse.addEventListener("click", () => {
+      sidebar.classList.toggle("active")
+      content.classList.toggle("active")
+    })
+  }
+
+  if (sidebarCollapseBtn) {
+    sidebarCollapseBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("active")
+      content.classList.toggle("active")
+    })
+  }
+
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener("click", (event) => {
+    const windowWidth = window.innerWidth
+    if (windowWidth <= 768) {
+      // Check if click is outside sidebar and sidebar is open
+      if (
+        !sidebar.contains(event.target) &&
+        !sidebarCollapse.contains(event.target) &&
+        !sidebar.classList.contains("active")
+      ) {
+        sidebar.classList.add("active")
+        content.classList.remove("active")
+      }
+    }
+  })
+
+  // Handle active menu items
+  const currentPath = window.location.pathname
+  const sidebarLinks = document.querySelectorAll(".sidebar-link")
+
+  sidebarLinks.forEach((link) => {
+    const href = link.getAttribute("href")
+    if (href === currentPath || currentPath.startsWith(href)) {
+      link.classList.add("active")
+    }
+  })
+
+  // Responsive behavior
+  function handleResize() {
+    if (window.innerWidth <= 768) {
+      sidebar.classList.add("active")
+      content.classList.remove("active")
+    } else {
+      sidebar.classList.remove("active")
+      content.classList.remove("active")
+    }
+  }
+
+  // Initial call and event listener for resize
+  handleResize()
+  window.addEventListener("resize", handleResize)
+})
+
+// Initialize tooltips and popovers if Bootstrap is used
+if (typeof bootstrap !== "undefined") {
+  var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+  var tooltipList = tooltipTriggerList.map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl))
+
+  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+  var popoverList = popoverTriggerList.map((popoverTriggerEl) => new bootstrap.Popover(popoverTriggerEl))
+}
+
