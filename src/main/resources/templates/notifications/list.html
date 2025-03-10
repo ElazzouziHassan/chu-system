@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title th:text="${title}">Notifications - CHU El Jadida</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" th:href="@{/css/style.css}">
+   <link rel="stylesheet" th:href="@{/css/notifications.css}">
+</head>
+<body>
+   <div th:replace="~{layout/main :: body(content=~{::content})}">
+       <div th:fragment="content">
+           <div class="notifications-container">
+               <!-- Header section -->
+               <div class="notifications-header">
+                   <h1><i class="fas fa-bell"></i> Notifications</h1>
+                   <a th:href="@{/notifications/new}" class="btn-new">
+                       <i class="fas fa-plus-circle"></i> Nouvelle Notification
+                   </a>
+               </div>
+               
+               <!-- Search and filters -->
+               <div class="notifications-filters">
+                   <div class="notifications-search">
+                       <input type="text" placeholder="Rechercher une notification..." class="search-input" data-table="notifications-table">
+                   </div>
+                   <div class="notifications-filter">
+                       <select class="filter-select" data-column="type" data-table="notifications-table">
+                           <option value="">Tous les types</option>
+                           <option value="INFO">Information</option>
+                           <option value="ALERTE">Alerte</option>
+                           <option value="DIFFUSION">Diffusion</option>
+                           <option value="RAPPEL">Rappel</option>
+                       </select>
+                   </div>
+                   <div class="notifications-filter">
+                       <select class="filter-select" data-column="status" data-table="notifications-table">
+                           <option value="">Tous les statuts</option>
+                           <option value="Lue">Lue</option>
+                           <option value="Non lue">Non lue</option>
+                       </select>
+                   </div>
+               </div>
+               
+               <!-- Quick Actions -->
+               <div class="notifications-quick-actions">
+                   <a th:href="@{/notifications/diffuser}" class="btn btn-primary">
+                       <i class="fas fa-broadcast-tower me-2"></i>Diffuser une notification
+                   </a>
+                   <a th:href="@{/notifications/marquer-toutes-lues}" class="btn btn-success">
+                       <i class="fas fa-check-double me-2"></i>Marquer toutes comme lues
+                   </a>
+               </div>
+               
+               <!-- Table -->
+               <div class="notifications-table">
+                   <table class="table" id="notifications-table">
+                       <thead>
+                           <tr>
+                               <th>ID</th>
+                               <th>Message</th>
+                               <th>Type</th>
+                               <th>Date</th>
+                               <th>Statut</th>
+                               <th>Destinataires</th>
+                               <th class="text-end">Actions</th>
+                           </tr>
+                       </thead>
+                       <tbody>
+                           <tr th:if="${notifications.empty}">
+                               <td colspan="7">
+                                   <div class="notifications-empty">
+                                       <i class="fas fa-bell-slash"></i>
+                                       <p>Aucune notification trouvée</p>
+                                       <div class="mt-3">
+                                           <a th:href="@{/notifications/new}" class="btn btn-primary me-2">
+                                               <i class="fas fa-plus-circle me-2"></i>Créer une notification
+                                           </a>
+                                           <a th:href="@{/notifications/diffuser}" class="btn btn-info">
+                                               <i class="fas fa-broadcast-tower me-2"></i>Diffuser une notification
+                                           </a>
+                                       </div>
+                                   </div>
+                               </td>
+                           </tr>
+                           <tr th:each="notification : ${notifications}" th:class="${!notification.lue ? 'notification-unread' : ''}">
+                               <td data-label="ID" th:text="${notification.id}">1</td>
+                               <td data-label="Message" th:text="${#strings.abbreviate(notification.message, 50)}">Réunion du personnel médical à 14h...</td>
+                               <td data-label="Type" data-column="type">
+                                   <span th:class="'notification-type type-' + ${#strings.toLowerCase(notification.type)}" 
+                                         th:text="${notification.type}">INFO</span>
+                               </td>
+                               <td data-label="Date" th:text="${#dates.format(notification.dateCreation, 'dd/MM/yyyy HH:mm')}">01/03/2025 14:30</td>
+                               <td data-label="Statut" data-column="status">
+                                   <span th:class="'notification-status status-' + (${notification.lue} ? 'lue' : 'non-lue')" 
+                                         th:text="${notification.lue ? 'Lue' : 'Non lue'}">Non lue</span>
+                               </td>
+                               <td data-label="Destinataires" th:text="${notification.destinataires != null ? notification.destinataires.size() : '0'} + ' personne(s)'">3 personne(s)</td>
+                               <td class="text-end">
+                                   <div class="notifications-actions">
+                                       <a th:if="${!notification.lue}" 
+                                          th:href="@{/notifications/marquer-lue/{id}(id=${notification.id})}" 
+                                          class="btn-action btn-mark-read" 
+                                          data-bs-toggle="tooltip" 
+                                          title="Marquer comme lue">
+                                           <i class="fas fa-check"></i>
+                                       </a>
+                                       <a th:href="@{/notifications/delete/{id}(id=${notification.id})}" 
+                                          class="btn-action btn-delete" 
+                                          data-bs-toggle="tooltip" 
+                                          title="Supprimer"
+                                          data-confirm="Êtes-vous sûr de vouloir supprimer cette notification ?">
+                                           <i class="fas fa-trash"></i>
+                                       </a>
+                                   </div>
+                               </td>
+                           </tr>
+                       </tbody>
+                   </table>
+               </div>
+               
+               <!-- Notification Cards (Alternative View) -->
+               <h3 class="mt-5 mb-4">Notifications récentes</h3>
+               <div class="row">
+                   <div th:each="notification : ${notifications}" th:if="${!notification.lue}" class="col-md-6 col-lg-4 mb-4">
+                       <div class="notification-card notification-unread">
+                           <div class="notification-card-header">
+                               <h5 class="notification-card-title">
+                                   <i class="fas fa-bell me-2"></i>
+                                   <span th:text="${notification.type}">INFO</span>
+                               </h5>
+                               <span th:class="'notification-type type-' + ${#strings.toLowerCase(notification.type)}" 
+                                     th:text="${notification.type}">INFO</span>
+                           </div>
+                           <div class="notification-card-body">
+                               <div class="notification-card-message" th:text="${notification.message}">
+                                   Réunion du personnel médical à 14h dans la salle de conférence.
+                               </div>
+                           </div>
+                           <div class="notification-card-footer">
+                               <div class="notification-card-meta">
+                                   <i class="fas fa-calendar-alt me-1"></i>
+                                   <span th:text="${#dates.format(notification.dateCreation, 'dd/MM/yyyy HH:mm')}">01/03/2025 14:30</span>
+                               </div>
+                               <div class="notification-card-actions">
+                                   <a th:href="@{/notifications/marquer-lue/{id}(id=${notification.id})}" 
+                                      class="btn btn-sm btn-success" 
+                                      title="Marquer comme lue">
+                                       <i class="fas fa-check me-1"></i>Lue
+                                   </a>
+                                   <a th:href="@{/notifications/delete/{id}(id=${notification.id})}" 
+                                      class="btn btn-sm btn-danger" 
+                                      title="Supprimer"
+                                      data-confirm="Êtes-vous sûr de vouloir supprimer cette notification ?">
+                                       <i class="fas fa-trash"></i>
+                                   </a>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-12" th:if="${notifications.empty || notifications.?[!lue].empty}">
+                       <div class="alert alert-info">
+                           <i class="fas fa-info-circle me-2"></i>Aucune notification non lue.
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+
