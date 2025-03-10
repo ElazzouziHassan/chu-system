@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title th:text="${title}">Nouvelle Notification - CHU El Jadida</title>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+   <link rel="stylesheet" th:href="@{/css/style.css}">
+   <link rel="stylesheet" th:href="@{/css/notifications.css}">
+</head>
+<body>
+   <div th:replace="~{layout/main :: body(content=~{::content})}">
+       <div th:fragment="content">
+           <div class="notifications-container">
+               <!-- Header section -->
+               <div class="notifications-header">
+                   <h1>
+                       <i class="fas fa-bell"></i>
+                       <span th:text="${notification.id == null ? 'Nouvelle Notification' : 'Modifier Notification'}">Notification</span>
+                   </h1>
+                   <a th:href="@{/notifications}" class="btn-new">
+                       <i class="fas fa-arrow-left"></i> Retour à la liste
+                   </a>
+               </div>
+               
+               <!-- Form -->
+               <div class="notification-form">
+                   <form th:action="@{/notifications/save}" method="post" th:object="${notification}" class="needs-validation" novalidate>
+                       <input type="hidden" th:field="*{id}" />
+                       <input type="hidden" th:field="*{dateCreation}" />
+                       <input type="hidden" th:field="*{lue}" />
+                       
+                       <div class="row">
+                           <div class="col-md-12">
+                               <div class="form-group mb-4">
+                                   <label for="message" class="form-label">Message</label>
+                                   <textarea class="form-control" id="message" th:field="*{message}" rows="4" required></textarea>
+                                   <div class="invalid-feedback">
+                                       Veuillez saisir un message pour la notification.
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div class="row">
+                           <div class="col-md-6">
+                               <div class="form-group mb-4">
+                                   <label for="type" class="form-label">Type de notification</label>
+                                   <select class="form-select" id="type" th:field="*{type}" required>
+                                       <option value="">-- Sélectionner un type --</option>
+                                       <option value="INFO">Information</option>
+                                       <option value="ALERTE">Alerte</option>
+                                       <option value="RAPPEL">Rappel</option>
+                                   </select>
+                                   <div class="invalid-feedback">
+                                       Veuillez sélectionner un type de notification.
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div class="form-group mb-4">
+                           <label class="form-label">Destinataires</label>
+                           <div class="alert alert-info">
+                               <i class="fas fa-info-circle me-2"></i>Sélectionnez les membres du personnel qui recevront cette notification.
+                           </div>
+                           <div class="row">
+                               <div th:each="personnel : ${personnels}" class="col-md-4 mb-2">
+                                   <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" 
+                                              th:name="destinataireIds" 
+                                              th:value="${personnel.id}" 
+                                              th:id="'personnel-' + ${personnel.id}">
+                                       <label class="form-check-label" th:for="'personnel-' + ${personnel.id}">
+                                           <span th:text="${personnel.nom + ' ' + personnel.prenom}">Karim Tazi</span>
+                                           <small class="text-muted d-block" th:text="${personnel.fonction}">Médecin</small>
+                                       </label>
+                                   </div>
+                               </div>
+                           </div>
+                       </div>
+                       
+                       <div class="form-actions">
+                           <button type="reset" class="btn btn-secondary">
+                               <i class="fas fa-undo me-2"></i>Réinitialiser
+                           </button>
+                           <button type="submit" class="btn btn-primary">
+                               <i class="fas fa-save me-2"></i>Enregistrer
+                           </button>
+                       </div>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   <script th:src="@{/js/script.js}"></script>
+</body>
+</html>
+
