@@ -1,0 +1,490 @@
+/* Styles for the Services pages */
+
+/* Header section */
+.services-header {
+  background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+  color: white;
+  padding: var(--spacing-6);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
+}
+
+.services-header h1 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.services-header h1 i {
+  font-size: 1.75rem;
+}
+
+.services-header .btn-new {
+  background-color: white;
+  color: var(--warning);
+  font-weight: 600;
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  box-shadow: var(--shadow);
+}
+
+.services-header .btn-new:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  text-decoration: none;
+}
+
+/* Search and filters */
+.services-filters {
+  display: flex;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.services-search {
+  flex: 1;
+  min-width: 250px;
+}
+
+.services-search input {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+}
+
+.services-search input:focus {
+  border-color: var(--warning);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  outline: none;
+}
+
+.services-filter select {
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  background-color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-all);
+  min-width: 200px;
+}
+
+.services-filter select:focus {
+  border-color: var(--warning);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  outline: none;
+}
+
+/* Table styles */
+.services-table {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.services-table .table {
+  margin-bottom: 0;
+}
+
+.services-table th {
+  background-color: var(--gray-100);
+  color: var(--gray-700);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.05em;
+  padding: var(--spacing-4) var(--spacing-4);
+  border-bottom: 2px solid var(--gray-200);
+}
+
+.services-table td {
+  padding: var(--spacing-4) var(--spacing-4);
+  vertical-align: middle;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.services-table tr:last-child td {
+  border-bottom: none;
+}
+
+.services-table tr:hover {
+  background-color: var(--gray-50);
+}
+
+/* Type badges */
+.service-type {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.type-urgence {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.type-chirurgie {
+  background-color: rgba(236, 72, 153, 0.1);
+  color: #ec4899;
+  border: 1px solid rgba(236, 72, 153, 0.2);
+}
+
+.type-consultation {
+  background-color: rgba(59, 130, 246, 0.1);
+  color: var(--info);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.type-laboratoire {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.type-radiologie {
+  background-color: rgba(139, 92, 246, 0.1);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.type-reanimation {
+  background-color: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+/* Action buttons */
+.services-actions {
+  display: flex;
+  gap: var(--spacing-2);
+  justify-content: flex-end;
+}
+
+.btn-action {
+  width: 2rem;
+  height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+  color: white;
+}
+
+.btn-view {
+  background-color: var(--info);
+}
+
+.btn-edit {
+  background-color: var(--warning);
+}
+
+.btn-delete {
+  background-color: var(--danger);
+}
+
+.btn-adapt {
+  background-color: var(--success);
+}
+
+.btn-action:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+/* Form styles */
+.service-form {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: var(--spacing-6);
+}
+
+.service-form .form-group {
+  margin-bottom: var(--spacing-5);
+}
+
+.service-form label {
+  display: block;
+  margin-bottom: var(--spacing-2);
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.service-form input,
+.service-form select,
+.service-form textarea {
+  width: 100%;
+  padding: var(--spacing-3) var(--spacing-4);
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+}
+
+.service-form input:focus,
+.service-form select:focus,
+.service-form textarea:focus {
+  border-color: var(--warning);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  outline: none;
+}
+
+.service-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.service-form .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-6);
+}
+
+/* Detail view */
+.service-detail {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.service-detail-header {
+  background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
+  color: white;
+  padding: var(--spacing-6);
+}
+
+.service-detail-header h2 {
+  margin: 0;
+  color: white;
+  font-weight: 700;
+}
+
+.service-detail-body {
+  padding: var(--spacing-6);
+}
+
+.service-detail-item {
+  margin-bottom: var(--spacing-4);
+}
+
+.service-detail-label {
+  font-weight: 600;
+  color: var(--gray-600);
+  margin-bottom: var(--spacing-1);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.service-detail-value {
+  font-size: 1rem;
+  color: var(--gray-900);
+}
+
+.service-detail-actions {
+  padding: var(--spacing-4) var(--spacing-6);
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-3);
+}
+
+/* Adaptation section */
+.adaptation-options {
+  background-color: var(--gray-100);
+  border-radius: var(--radius);
+  padding: var(--spacing-4);
+  margin-top: var(--spacing-4);
+}
+
+.adaptation-options h3 {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-3);
+  color: var(--gray-700);
+}
+
+.adaptation-options .adaption-actions {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+/* Service Group Styles */
+.service-group {
+  background-color: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  margin-bottom: var(--spacing-6);
+}
+
+.service-group-header {
+  padding: var(--spacing-4) var(--spacing-6);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.service-group-header h3 {
+  margin: 0;
+  color: var(--gray-800);
+  font-weight: 600;
+}
+
+.service-group-body {
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+.service-group-footer {
+  padding: var(--spacing-3) var(--spacing-6);
+  background-color: var(--gray-100);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.service-group-stats {
+  font-weight: 500;
+  color: var(--gray-700);
+}
+
+.service-tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-tree li {
+  margin-bottom: var(--spacing-2);
+}
+
+.service-tree .service-tree-item {
+  display: flex;
+  align-items: center;
+  background-color: var(--gray-100);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-radius: var(--radius);
+  transition: var(--transition-all);
+}
+
+.service-tree .service-tree-item:hover {
+  background-color: var(--gray-200);
+}
+
+.service-tree .service-tree-item .service-name {
+  font-weight: 500;
+  flex: 1;
+}
+
+.service-tree .service-tree-item .service-info {
+  color: var(--gray-600);
+  margin-right: var(--spacing-4);
+}
+
+/* Empty state */
+.services-empty {
+  padding: var(--spacing-8);
+  text-align: center;
+  color: var(--gray-500);
+}
+
+.services-empty i {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-4);
+  color: var(--gray-400);
+}
+
+.services-empty p {
+  font-size: 1.125rem;
+  margin-bottom: var(--spacing-4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .services-header {
+    padding: var(--spacing-4);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .services-header .btn-new {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .services-filters {
+    flex-direction: column;
+  }
+
+  .services-table th {
+    display: none;
+  }
+
+  .services-table td {
+    display: block;
+    text-align: right;
+    padding: var(--spacing-2) var(--spacing-4);
+  }
+
+  .services-table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: 600;
+    color: var(--gray-700);
+  }
+
+  .services-table tr {
+    display: block;
+    border-bottom: 1px solid var(--gray-200);
+    padding: var(--spacing-3) 0;
+  }
+
+  .services-actions {
+    justify-content: flex-end;
+    margin-top: var(--spacing-2);
+  }
+
+  .service-form {
+    padding: var(--spacing-4);
+  }
+}
+
+/* Animations */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-container {
+  animation: slideIn 0.3s ease-out forwards;
+}
+
