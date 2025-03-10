@@ -59,20 +59,23 @@ The system implements several design patterns to ensure maintainability, extensi
 - Process patient discharge
 
 ### 4. Service Management
+![Service Management](./public/services.png)
 - Create and manage hospital services
 - Assign services to buildings
 - Assign personnel as service heads
 - Adapt services for different purposes
 
-### 5. Section Management
+### 5. Notification System
+![Notification System](./public/notifications.png)
+- Send notifications to personnel
+- Broadcast important announcements
+- Track notification status
+
+### 6. Section Management
 - Organize patients into medical sections
 - Assign doctors to sections
 - Track section capacity and occupancy
 
-### 6. Notification System
-- Send notifications to personnel
-- Broadcast important announcements
-- Track notification status
 
 ## Installation and Setup
 
